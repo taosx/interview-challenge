@@ -1,0 +1,56 @@
+{{define "content"}}
+<div>
+
+    <h2>Hello {{ .UserName }}, Time to book your exclusive ticket</h2>
+    <h3>We reserved your ticket for 5 minutes</h3>
+
+    <p>ID: {{ .TicketID }}</p>
+    <p>Cost: {{ .TicketPrice }}</p>
+
+    <div>
+        <button id="book_ticket">Book Ticket</button>
+    </div>
+</div>
+{{end}}
+
+{{define "header"}}
+<script src="https://js.stripe.com/v3/"></script>
+{{end}}
+
+{{define "footer"}}
+<script type="text/javascript">
+    const stripe = Stripe('pk_test_oHGUvbx3hNgkL8b35pjJv94E00rZmKtRuK');
+
+    const bookBtn = document.getElementById("book_ticket");
+
+    if (!bookBtn) {
+        console.log("[error] book button can't be found.")
+    }
+
+    bookBtn.addEventListener("click", async () => {
+        stripe.redirectToCheckout({
+            // Make the id field from the Checkout Session creation API response
+            // available to this file, so you can provide it as parameter here
+            sessionId: '{{.CheckoutSessionID}}'
+        }).then((result) => {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer
+            // using `result.error.message`.
+        });
+
+        // if (raw_response.status !== 200) {
+        //     const content = await raw_response.text();
+        //     alert(content);
+        //     return
+        // }
+
+        // const content = await raw_response.json();
+        // console.log(content)
+
+        // window.location.href = `/booking/${content.user_slug}`;
+    })
+
+
+</script>
+
+{{end}}

@@ -1,0 +1,26 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{{ .WebTitle }}</title>
+    {{block "style" .}} {{end}}
+    {{block "header" .}} {{end}}
+</head>
+
+<body>
+    <div class="main-container">
+        {{template "head-nav" .}}
+        <div class="main-body-container">
+            {{template "content" .}}
+        </div>
+    </div>
+
+    {{block "footer" .}} {{end}}
+</body>
+
+</html>
+{{ end }}

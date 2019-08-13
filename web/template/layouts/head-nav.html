@@ -1,0 +1,32 @@
+{{define "head-nav"}}
+<header class="main-head">
+
+    <div class="main-head_logo">
+        <a href="/">{{ .WebTitle }}</a>
+    </div>
+
+    <div class="main-head_navigation">
+        <nav>
+            <ul>
+                {{range .NavigationLinks}}
+                <li><a href="{{.URL}}">{{.Title}}</a></li>
+                {{end}}
+            </ul>
+        </nav>
+    </div>
+
+</header>
+{{end}}
+
+{{define "head-nav-error"}}
+<header class="main-head">
+
+    <div class="main-head_logo">
+        <a href="/">ERROR</a>
+    </div>
+
+    <div class="main-head_navigation">
+    </div>
+
+</header>
+{{end}}

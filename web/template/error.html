@@ -1,0 +1,26 @@
+{{ define "base" }}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Internal Server Error</title>
+    {{block "style" .}} {{end}}
+</head>
+
+<body>
+    <div class="main-container">
+        {{template "head-nav-error" .}}
+        <div class="main-body-container">
+            Message: {{ .ErrorMsg }}
+            <p>
+                Cause: {{ .ErrorCause }}
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>
+{{ end }}

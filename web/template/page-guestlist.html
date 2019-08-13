@@ -1,0 +1,19 @@
+{{define "content"}}
+<div>
+    {{ if .Guests }}
+
+    <table>
+        {{ range .Guests }}
+        <tr>
+            <td>{{ .Name }}</td>
+        </tr>
+        {{ end }}
+    </table>
+
+    {{else}}
+
+    <p>No guests here</p>
+
+    {{ end }}
+</div>
+{{end}}

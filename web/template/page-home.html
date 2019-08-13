@@ -1,0 +1,55 @@
+{{define "content"}}
+<div>
+    <p> Only tickets {{.TicketCount}} left </p>
+
+    <div>
+        <label for="fullname">Your full name:</label>
+        <br />
+        <input type="text" name="fullname" id="fullname" />
+        <br />
+        <br />
+        <button id="reserve_ticket">Reserve Ticket Now</button>
+    </div>
+</div>
+{{end}}
+
+
+{{define "footer"}}
+<script type="text/javascript">
+    const nameInput = document.getElementById("fullname");
+    const reserveBtn = document.getElementById("reserve_ticket");
+
+    if (!nameInput || !reserveBtn) {
+        console.log("[error] name input box or reserve button can't be found.")
+    }
+
+    reserveBtn.addEventListener("click", async () => {
+        const name = nameInput.value;
+        const raw_response = await fetch("/api/reserve", {
+            method: "POST",
+            headers: {
+                'Accept': "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "name": name,
+            })
+        });
+
+
+        if (raw_response.status !== 200) {
+            const content = await raw_response.text();
+            alert(content);
+            return
+        }
+
+        const content = await raw_response.json();
+        console.log(content)
+
+        window.location.href = `/booking/${content.user_slug}`;
+    })
+
+
+</script>
+
+{{end}}

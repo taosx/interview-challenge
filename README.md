@@ -1,2 +1,1 @@
-# interview-challenge
-Ticketing System
+# interview-challenge - Ticketing System
